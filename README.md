@@ -74,3 +74,5 @@ Complete a month cost analysis of each Azure resource to give an estimate total 
 For the web app I've chosen the B1 tier app service plan. In this scenario I would have gone with the free F1 tier for the web app but for the azure function app with python runtime the B1 app service plan was the minumum requirement. As for the web app anyways an app service plan was required, it made sense to reuse this for the function app. 
 
 In a production context I would still have selected the B1 tier for the app service plan given that the web app will only be viewed by conference attendees and doesn't require heavy computation on the server side and the notfications will only be issued by conference admins and the number of notifications will thus also be limited. 
+
+In general it makes sense to offload the time consuming task of sending notificaitons to a component that is separate from the actual web app. This ways the web app can handle web requests with fast response times. As notifications are only sent from time to time it makes sense to use an azure function to handle these.
